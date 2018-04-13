@@ -68,12 +68,18 @@ mongoose.Promise = require("bluebird");
 const reconnectTimeout = 10000; // ms.
 
 function connect() {
-  mongoose.connect(URI, connectOptions).catch(() => {});
+  if(MONGODB_DBNAME=="undefined"){
+    mongoose.connect(URI, connectOptions).catch(() => {});
+  }
+  else{
+    mongoose.connect(process.env.MONGODB_URI, connectOptions).catch(() => {});
+  }
+  
 }
 
 // make sure your connected
 // the writings on the wall
-
+    
 const db = mongoose.connection;
 
 db.on("connecting", () => {
