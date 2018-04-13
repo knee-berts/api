@@ -18,6 +18,7 @@ var MONGODB_PASSWORD = process.env.MONGODB_PASSWORD;
 console.log(`PASSWORD: `, MONGODB_PASSWORD);
 var MONGODB_DBNAME = process.env.MONGODB_DBNAME;
 console.log(`DBNAME: `, MONGODB_DBNAME);
+var MONGODB_URI = process.env.MONGODB_URI;
 
 var proto = "mongodb://";
 var URI = proto.concat(MONGODB_USERNAME, ":", MONGODB_PASSWORD, "@", MONGODB_HOST,":", MONGODB_PORT, "/", MONGODB_DBNAME, "?ssl=true");
@@ -69,17 +70,19 @@ const reconnectTimeout = 10000; // ms.
 
 function connect() {
   if(MONGODB_DBNAME=="undefined"){
+    mongoose.connect(MONGODB_URI, connectOptions).catch(() => {});
+  } else {
     mongoose.connect(URI, connectOptions).catch(() => {});
-  }
-  else{
-    mongoose.connect(process.env.MONGODB_URI, connectOptions).catch(() => {});
-  }
-  
+  }  
 }
+
+// function connect() {
+//   mongoose.connect(URI, connectOptions).catch(() => {});
+// }
 
 // make sure your connected
 // the writings on the wall
-    
+
 const db = mongoose.connection;
 
 db.on("connecting", () => {
