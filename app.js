@@ -68,17 +68,25 @@ mongoose.Promise = require("bluebird");
 
 const reconnectTimeout = 10000; // ms.
 
-function connect() {
-  if(MONGODB_DBNAME=="undefined"){
-    mongoose.connect(MONGODB_URI, connectOptions).catch(() => {});
-  } else {
-    mongoose.connect(URI, connectOptions).catch(() => {});
-  }  
-}
+// function connect() {
+//   if(MONGODB_DBNAME=="undefined"){
+//     mongoose.connect(process.env.MONGODB_URI, connectOptions, function(error){
+//       if(!error){
+//         console.dir('CONNECTED TO ' + process.env.MONGODB_URI);
+//       }
+//     });
+//   } else {
+//     mongoose.connect(URI, connectOptions).catch(() => {});
+//   }  
+// }
 
 // function connect() {
 //   mongoose.connect(URI, connectOptions).catch(() => {});
 // }
+
+function connect() {
+  mongoose.connect(process.env.MONGODB_URI, connectOptions).catch(() => {});
+}
 
 // make sure your connected
 // the writings on the wall
