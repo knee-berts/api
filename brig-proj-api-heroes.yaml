@@ -4,7 +4,7 @@ cloneURL: "https://github.com/knee-berts/api"
 sharedSecret: "CAno718!!"
 # MAKE SURE YOU CHANGE THIS. It's basically a password
 github:
-  token: "65ddd46cf0cb384e4daf4480d19c0acc81159530"
+  token: "f7862a466642476d4e11e3d7891283b4472e1c0c"
 secrets:
   acrServer: njeacr.azurecr.io
   acrUsername: njeacr
