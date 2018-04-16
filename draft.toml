@@ -4,7 +4,7 @@
     namespace = "default"
     wait = false
     watch = false
-    watch-delay = 1
+    watch-delay = 2
     auto-connect = false
     override-ports = ["3000:3000"]
 
